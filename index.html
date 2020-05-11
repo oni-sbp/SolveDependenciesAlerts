@@ -1,0 +1,524 @@
+<head>
+  <title>
+    API Docs 2.0 - Platform Of Trust Documentation
+  </title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js">
+  </script>
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="icon" href="images/favicon.png">
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+      window.scrollTo(0, document.body.scrollHeight);
+    });
+
+    function validateForm() {
+      var x = document.forms["submitForm"]["url"].value;
+      var y = document.forms["submitForm"]["file"].value;
+      if (!x && !y) {
+        document.getElementById("validatorFile").style.display = "block";
+        return false;
+      }
+      document.getElementById("waitingContainer").style.display = "block";
+
+      if (document.getElementById("logs")) {
+        document.getElementById("logs").style.display = "none";
+      }
+
+      return true;
+    }
+
+    function removeValidator() {
+      document.getElementById("validatorFile").style.display = "none";
+    }
+
+    function myFunction() {
+      var x = document.getElementById("ButtonExpand");
+      var y = document.getElementById("firstSubmitButton");
+
+      var down = document.getElementById("arrowDown");
+      var up = document.getElementById("arrowUp");
+      var addit = document.getElementById("additional-options-text");
+
+      if (x.innerHTML === "Expand") {
+        x.innerHTML = "Collapse";
+        y.style.display = "block";
+        addit.innerHTML = "Show Additional Options";
+        up.style.display = "none";
+        down.style.display = "inline";
+      } else {
+        x.innerHTML = "Expand";
+        y.style.display = "none";
+        addit.innerHTML = "Hide Additional Options";
+        up.style.display = "inline";
+        down.style.display = "none";
+      }
+    }
+
+    function writeFileName(el) {
+      var split1 = el.value.split('/');
+      var split2 = split1[split1.length - 1].split('\\');
+      $("#FileName").val(split2[split2.length - 1]);
+      document.getElementById("FileAfter").style.display = "block"
+      document.getElementById("FileInitial").style.display = "none"
+
+      var parts = split2[split2.length - 1].split('.');
+      var extension = parts[parts.length - 1];
+
+      var acceptedExtensions = ['raml', 'json', 'yaml', 'zip', 'yml']
+
+      if (!(acceptedExtensions.indexOf(extension) > -1)) {
+        document.getElementById("validatorFileExtension").style.display = "block";
+      } else {
+        document.getElementById("validatorFileExtension").style.display = "none";
+      }
+    }
+
+    function callChooseFile(button) {
+      $(button).click();
+    }
+
+    function cancelFile() {
+      document.forms["submitForm"]["file"].value = null;
+      document.getElementById("FileAfter").style.display = "none"
+      document.getElementById("FileInitial").style.display = "block"
+      $("#FileName").val("");
+      document.getElementById("validatorFileExtension").style.display = "none";
+
+    }
+
+    function writeConfigFileName(el) {
+      var split1 = el.value.split('/');
+      var split2 = split1[split1.length - 1].split('\\');
+      $("#ConfigFileName").val(split2[split2.length - 1]);
+      document.getElementById("ConfigAfter").style.display = "block"
+      document.getElementById("ConfigInitial").style.display = "none"
+
+      var parts = split2[split2.length - 1].split('.');
+      var extension = parts[parts.length - 1];
+
+      var acceptedExtensions = ['yaml']
+
+      if (!(acceptedExtensions.indexOf(extension) > -1)) {
+        document.getElementById("validatorExtension").style.display = "block";
+      } else {
+        document.getElementById("validatorExtension").style.display = "none";
+      }
+    }
+
+    function cancelConfigFile() {
+      document.forms["submitForm"]["config"].value = null;
+      document.getElementById("ConfigAfter").style.display = "none"
+      document.getElementById("ConfigInitial").style.display = "block"
+      $("#ConfigFileName").val("");
+      document.getElementById("validatorExtension").style.display = "none";
+    }
+
+    $(function () {
+      var validate = false
+
+      $("#form").submit(function (e) {
+        e.preventDefault();
+
+        var form = $(this);
+        var url = form.attr('action');
+        var formData = new FormData();
+        formData.append('file', $("#FileUpload").get(0).files[0]);
+        formData.append('config', $("#ConfigUpload").get(0).files[0]);
+        formData.append('url', $("input[name=url]")[0].value);
+        formData.append('config_url', $("input[name=config_url]")[0].value);
+        formData.append('host', $("input[name=host]")[0].value);
+        formData.append('scheme', $("input[name=scheme]:checked")[0].value);
+        formData.append('authentication', $("input[name=authentication]:checked")[0].value);
+        formData.append('auth_token', $("input[name=auth_token]")[0].value);
+        formData.append('python', $("input[name=python]")[0].checked);
+        formData.append('unirest.node', $("input[name='unirest.node']")[0].checked);
+        formData.append('java', $("input[name='java']")[0].checked);
+        formData.append('curl', $("input[name=curl]")[0].checked);
+        formData.append('2xx-response', $("input[name=2xx-response]")[0].checked);
+        formData.append('keyword', $("input[name=keyword]")[0].value);
+        formData.append('validate', $("input[name=validate]")[0].checked);
+
+        if (validateForm()) {
+          $.ajax({
+            type: "POST",
+            url: url,
+            enctype: 'multipart/form-data',
+            processData: false,
+            contentType: false,
+            data: formData,
+            success: function (data) {
+              console.log('initial response', data);
+              validate = data.validate
+              getSubmitLog(data.requestId, data.origin, data.validate)
+            },
+            error: function () {
+              alert("Submission failed!");
+            }
+          });
+
+          $("#OpenModalButton").click();
+        }
+      })
+
+      var stages = [
+        'Processing submitted data',
+        'Generating samples',
+        'Generating docs',
+        'Generating archive',
+        'Installing prerequisites',
+        'Running samples for '
+      ]
+
+      var languages = [
+        'JavaScript',
+        'Python',
+        'cURL',
+        'Java'
+      ]
+
+      var content = []
+      var contentIndex = 0
+      var stage = 0
+      $("#Console").val('')
+      displayConsole()
+      function displayConsole() {
+        while (content.length > contentIndex) {
+          if (content[contentIndex].log.length != 0) {
+            break;
+          }
+          ++contentIndex;
+        }
+
+        if (content.length > contentIndex) {
+          var line = content[contentIndex].log.split('\n')[0] + '\n';
+          content[contentIndex].log = content[contentIndex].log.replace(line, '');
+
+          var textarea = $("#Console")
+          textarea.val(textarea.val() + line)
+          textarea.scrollTop(textarea[0].scrollHeight)
+
+          if(stage < 4 && textarea.val().indexOf(stages[stage + 1]) > 0) {
+            stage += 1
+          }
+          
+          var stageHeader = document.getElementById("Stage");
+          if (stage === 4) {
+            var fullLog = textarea.val()
+            var pos = -1
+            var max = -1
+
+            for (var langIndex in languages) {
+              var position = fullLog.indexOf('======== ' + languages[langIndex] + ' ========')
+              if (position > max) {
+                max = position
+                pos = langIndex
+              }
+            }
+
+            if (validate) {
+              if (pos == -1) {
+                stageHeader.innerHTML = stages[4]
+              } else {
+                stageHeader.innerHTML = stages[5] + languages[pos]
+              }
+            }
+          } else {
+            stageHeader.innerHTML = stages[stage]
+          }
+        }
+        setTimeout(function () {
+          displayConsole()
+        }, 100)
+      }
+
+      function getSubmitLog(requestId, origin, validate) {
+        $.ajax({
+          type: "GET",
+          url: "progress?requestId=" + requestId + "&validate=" + validate + "&random=" + Math.random(),
+          success: function (data) {
+            if (data.ready) {
+              window.location.href = '/readyindex?validate=' + validate + '&origin=' + origin + '&requestId=' + requestId;
+            } else {
+              content.push({ log: data.newLog })
+
+              setTimeout(function () {
+                getSubmitLog(requestId, origin, validate)
+              }, 500)
+            }
+          }
+        })
+      }
+    })
+  </script>
+</head>
+
+<body class="mainBody">
+  <button id="OpenModalButton" style="display:none;" type="button" class="btn btn-info btn-lg" data-toggle="modal"
+    data-target="#LogModal">Open Modal</button>
+
+  <!-- Modal -->
+  <div id="LogModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false"
+    style="max-width: 2550px!important;">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">
+            <div id="Stage" style="display: inline-block;">Processing submitted data</div>
+            <div style="display: inline-block;" class="spinner-border"></div>
+          </h4>
+        </div>
+        <div class="modal-body">
+          <textarea id="Console" spellcheck="false" disabled></textarea>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div id="waitingContainer" style="display: none;">
+    <div class="overlay">
+    </div>
+    <div class="shadow">
+      <center>
+        <div class="loader logo"></div>
+      </center>
+    </div>
+  </div>
+  <div class="top headerBody">
+    <center>
+      <nav class="upperNav">
+        <a href="https://platformoftrust.net/" class="upperNavItem">Platform of Trust</a>
+        <a href="https://developer.oftrust.net/" class="upperNavItem">Developer portal</a>
+        <a href="https://docs.oftrust.net//" class="upperNavItem">Docs of Trust</a>
+      </nav>
+    </center>
+    <div>
+      <div class=" float-right" style="padding-right: 3%">
+        <br>
+        <a href="https://platformoftrust.net/en/contact/" class="">
+          <button class="btn btn-default btnColor ">Book an online meeting</button>
+        </a>
+      </div>
+    </div>
+    <div class="empty-new-line-div"></div>
+    <div>
+      <center>
+        <img src="resources/logo-platform-of-trust.png" height="80" />
+      </center>
+      <br>
+    </div>
+    <center>
+      <div class="subTitle">Fast and reliable code example generation for your API documentation</div>
+    </center>
+  </div>
+  <div>
+    <br>
+    <div style=" margin-right: auto; margin-left: auto;  max-width: 1000;">
+      <div class="mainInfo">Provide API spec file</div>
+    </div>
+    <div style=" margin-right: auto; margin-left: auto;  max-width: 1000;">
+      <form id="form" action="fileupload" method="post" name="submitForm" enctype="multipart/form-data"
+        onsubmit="return validateForm()">
+        <div class="temp transparentBorder center-block" style=" max-width: 1000;">
+          <div class="bodyAlign">
+            <h4><b>Upload API spec file</b></h4><br>
+            <div class="inline-div float-left inputDiv" style="width:50%; min-width:250px ;">Load a file or archive:<br>
+              <div id="validatorSize" class="warning">*2 MB maximum file size</div>
+              <div id="warningAcceptedFiles" class="warning">*Accepted files: raml, yaml, yml, json, zip</div>
+              <div id="validatorFileExtension" class="validator">*Unsupported file</div>
+              <div id="validatorFile" class="validator">*No File or URL Selected</div>
+              <div id="FileInitial" class="filename-div" onclick="callChooseFile('#FileUploadLabel')">
+                <img src="resources/document icon-14.png" height="14" width="14" class="icon-image" />
+                <label type="text" class="input-field filename-input"
+                  style="background-color: black;  color: #898989;">No
+                  file selected</label>
+              </div>
+              <div id="FileAfter" class="filename-div-after" style="display: none;">
+                <img src="resources/pot icons-16.png" height="14" width="14" class="icon-image-left" />
+                <input type="text" class="input-field filename-input" id="FileName" style="background-color: #9E8DE2;"
+                  readonly placeholder="No file selected">
+                <img src="resources/pot icons-20.png" height="14" width="14" class="icon-image-right"
+                  onclick="cancelFile();" />
+              </div>
+              <br>
+              <label id="FileUploadLabel" for="FileUpload" class="btn btn-default custom-file-upload">
+                Choose file
+
+              </label>
+              <input id="FileUpload" type="file" name="file" onchange="writeFileName(this); removeValidator();" />
+            </div>
+            <div class="inline-div float-left inputDiv" style="width:50%; min-width:250px;">
+              <br>
+              <input type="input" class="inputText" name="url" onchange="removeValidator()" style="width:66%"
+                placeholder="Or insert URL:">
+            </div>
+            <div class="new-line-div">
+              <center>
+                <br>
+                <input type="submit" id="firstSubmitButton" class="btn btn-default btnColor"
+                  value="Generate Code Examples">
+              </center>
+            </div>
+            <br>
+            <br>
+            <div class="new-line-div">
+              <button type="button" id="ButtonExpand" style="display: none;" class="btn center" type="button"></button>
+              <a onclick="myFunction()" href="" style="color: #9073FF;" data-toggle="collapse"
+                data-target="#collapseExample">
+                <span id="additional-options-text">Show Additional Options</span>
+                <i class="fas fa-angle-up imageColor" id="arrowUp" style="display: none;"></i>
+                <i class="fas fa-angle-down imageColor" id="arrowDown"></i>
+                <!-- <div class="inline-div">
+                  <img src="public/resources/baseline_arrow_downward_white_18dp.png"  />
+                </div>
+                <div class="inline-div">
+                  <img src="public/resources/baseline_arrow_upward_white_18dp.png" id="up-arrow" />
+                </div> -->
+              </a>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="collapse" id="collapseExample" style=" max-width: 1000;">
+          <div class="additionalInfo">Additional options </div>
+          <div class="temp transparentBorder ">
+            <div class="bodyAlign">
+              <h4><b>Configure Optional settings</b></h4>
+
+
+              <div class="inline-div float-left inputDiv" style="width:50%; min-width:250px;"> Config file:
+                <div id="validatorSizeConfig" class="warning">*2 MB maximum file size</div>
+                <div id="validatorSizeConfig2" class="warning">*Accepted files: yaml</div>
+                <div id="validatorExtension" class="validator">*Unsupported file</div>
+                <div id="ConfigInitial" class="filename-div" onclick="callChooseFile('#ConfigUploadLabel')">
+                  <img src="resources/document icon-14.png" height="14" width="14" class="icon-image" />
+                  <label type="text" class="input-field filename-input"
+                    style="background-color: black;  color: #898989;">No
+                    file selected</label>
+                </div>
+                <div id="ConfigAfter" class="filename-div-after" style="display: none;">
+                  <img src="resources/pot icons-16.png" height="14" width="14" class="icon-image-left" />
+                  <input type="text" class="input-field filename-input" id="ConfigFileName"
+                    style="background-color: #9E8DE2;" placeholder="No file selected" readonly>
+                  <img src="resources/pot icons-20.png" height="14" width="14" class="icon-image-right"
+                    onclick="cancelConfigFile();" />
+                </div>
+                <br>
+                <label id="ConfigUploadLabel" for="ConfigUpload" class="btn btn-default custom-file-upload">
+                  Choose file
+                </label>
+                <input id="ConfigUpload" type="file" name="config" onchange="writeConfigFileName(this);" />
+              </div>
+              <div class="inline-div float-left inputDiv" style="width:50%;min-width:250px;">
+                <br><br>
+                <input type="input" class="inputText" name="config_url" style="width:66%" placeholder="Or insert URL:">
+              </div>
+              <div class="new-line-div"></div>
+              <div style=" width: 100%;">
+                <input type="text" class="inputText" name="host" placeholder="Validation API:"><br><br>
+                Scheme: <br>
+                <div class="flex inline-div float-left radio-div">
+                  <input id="scheme1" type="radio" value="https" name="scheme" checked />
+                  <label for="scheme1">HTTPS</label>
+                </div>
+                <div class="flex inline-div float-left radio-div">
+                  <input id="scheme2" type="radio" value="http" name="scheme" />
+                  <label for="scheme2">HTTP</label>
+                </div>
+                <br><br>
+                Authentication type: <br>
+                <div class="flex inline-div float-left radio-div">
+                  <input id="auth1" type="radio" value="none" name="authentication" checked />
+                  <label for="auth1">None</label>
+                </div>
+                <div class="flex inline-div float-left radio-div">
+                  <input id="auth2" type="radio" value="basic" name="authentication" />
+                  <label for="auth2">Basic</label>
+                </div>
+                <div class="flex inline-div float-left radio-div">
+                  <input id="auth3" type="radio" value="bearer" name="authentication" />
+                  <label for="auth2">Bearer</label>
+                </div>
+                <br><br>
+                <br>
+                <input id="auth_token" type="text" class="inputText" name="auth_token" placeholder="AUTH_TOKEN:"
+                  style="width:33%; min-width:110px;">
+                <br><br>
+                Generate samples for:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="flex">
+                  <label class="container" for="tech1">Python
+                    <input id="tech1" type="checkbox" checked name="python" />
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+                <div class="flex">
+                  <label class="container" for="tech2">Unirest.node
+                    <input id="tech2" type="checkbox" checked name="unirest.node" />
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+                <div class="flex">
+                  <label class="container" for="tech3"> cURL
+                    <input id="tech3" type="checkbox" checked name="curl" />
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+                <div class="flex">
+                  <label class="container" for="tech4">2xx-response
+                    <input id="tech4" type="checkbox" checked name="2xx-response" />
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+                <div class="flex">
+                  <label class="container" for="tech5"> Java
+                    <input id="tech5" type="checkbox" checked name="java" />
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+                <br>
+                <input class="inputText" type="text" name="keyword" placeholder="Keyword:">
+                <br><br>
+                <div class="flex">
+                  <div class="inline-div">Test&nbsp;&nbsp;</div>
+                  <div class="inline-div">
+                    <label class="container" for="test">
+                      <input id="test" type="checkbox" name="validate" />
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+                </div>
+                <center>
+                  <input type="submit" id="secondSubmitButton" class="btn btn-default btnColor"
+                    value="Generate Code Examples">
+                </center>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>

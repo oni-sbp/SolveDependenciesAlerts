@@ -1,0 +1,436 @@
+.headerBody{
+    background-color: #9073FF;
+}
+
+.mainBody{
+    background-color: black;
+}
+
+.temp{
+    background-color: #171C28;
+    color: white;
+}
+
+.step2{
+    visibility: visible;
+}
+
+.imageColor{
+  color: #9073FF;
+}
+
+.transparentBorder{
+    border:transparent;
+    border-style: groove;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    border-radius: 7px;
+}
+
+.title{
+    text-align: center;
+    font-size: 40px;
+    width: 100%;
+    color: white;
+    font-family: 'MS Reference Sans Serif';
+}
+
+.subTitle{
+    font-size:30px;
+    color: white;
+    font-family: 'Times New Roman';
+}
+
+.btn-default {
+    border-radius: 40px;
+    transition: all 0.3s ease 0s;
+    font-family: 'Fira sans', sans-serif;
+}
+
+.validator {
+    display: none;
+    color:  #FF6CC0;
+    font-family: 'Fira sans', sans-serif;
+    font-size: 11px;
+}
+
+.warning {
+    color: #E0BD0A;
+    font-family: 'Fira sans', sans-serif;
+    font-size: 11px;
+}
+
+.inputText {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid white;
+  color: white;
+}
+
+.mainInfo{
+    color: white;
+    font-size: 30px;
+}
+
+.additionalInfo{
+    color: white;
+    font-size: 30px;
+}
+
+.inline-div{
+  display:inline;
+}
+
+.bodyAlign{
+  margin: 7mm;
+}
+
+.btnColor {
+    background-color:  #5CD328;
+    color: white
+}
+
+.btnColor:hover {
+  transition: all 0.4s ease 0s;
+  background-color: rgb(65, 155, 26);
+  color: white;
+  box-shadow: rgb(73, 55, 143) 0px 0px 0.4rem;
+}
+
+.upperNav {
+  position: relative;
+  top: 0px;
+  display: inline-block;
+  padding: 0.2em 3em;
+  text-align: right;
+  background: rgb(88, 62, 185) none repeat scroll 0% 0%;
+  clip-path: polygon(0% 0%, 100% 0%, 95% 100%, 5% 100%);
+}
+
+.upperNavItem {
+  color: white;
+  font-family: 'Fira sans', sans-serif;
+  margin-right: 3mm;
+  line-height: 1.125em;
+}
+.upperNavItem:hover {
+  text-shadow: rgba(240, 240, 240, 1) 0px 0px 2px;
+  color: white;
+  text-decoration: none;
+  outline: currentcolor none medium;
+}
+
+#ButtonExpand {
+  background-color: #9073FF;
+  color: white;
+  transition: all 0.4s ease 0s;
+}
+
+#ButtonExpand:hover {
+  background-color: rgb(97, 72, 194);
+  color: white;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: #9073FF;
+    float: right;
+    margin-right: 34%;
+    color: white;
+}
+
+.custom-file-upload:hover {
+    background-color: rgb(97, 72, 194);
+    color: white;
+}
+
+.empty-new-line-div {
+    clear: both;
+    vertical-align: bottom;
+    width: 100%;
+    height: 0px;
+}
+.new-line-div {
+  clear: both;
+  vertical-align: bottom;
+  width: 100%;
+  height: 25px;
+}
+
+.icon-image {
+    margin-bottom: 6px;
+    margin-top: 6px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.icon-image-left {
+    margin-bottom: 6px;
+    margin-top: 6px;
+    margin-left: 10px;
+    margin-right: 10px;
+    float: left;
+}
+
+.icon-image-right {
+    margin-bottom: 6px;
+    margin-top: 6px;
+    margin-left: 10px;
+    margin-right: 10px;
+    float: right;
+}
+
+.filename-input {
+    width: 80%;
+    outline: none;
+    border: 0;
+    background-color: inherit;
+    color: white;
+}
+
+.filename-div {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    width: 66%;
+    align-content: center;
+    background-color: black;
+    border-radius: 1mm;
+    height: 26px;
+}
+
+.filename-div-after {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    width: 75%;
+    align-content: center;
+    background-color: rgb(158, 141, 226);
+    border-radius: 1mm;
+    height: 26px;
+}
+
+input[type="radio"] {
+    /* remove standard background appearance */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* create custom radiobutton appearance */
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    padding: 1px;
+    /* background-color only for content */
+    background-clip: content-box;
+    border: 1px solid #bbbbbb;
+    background-color: #171C28;
+    border-radius: 50%;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+input[type="radio"]:checked {
+    background-color: #9073FF;
+}
+
+input[type="checkbox"] {
+    /* remove standard background appearance */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* create custom radiobutton appearance */
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    padding: 1px;
+    /* background-color only for content */
+    background-clip: content-box;
+    border: 1px solid #bbbbbb;
+    background-color: #171C28;
+    border-radius: 3px;
+    margin-bottom: auto;
+    margin-top: auto;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #9073FF;
+}
+
+.flex {
+    align-items: center;
+}
+
+.radio-div{
+      width: 100px;
+}
+
+.container {
+    display: inline;
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 4;
+    left: 0;
+    width: 15px;
+    height: 15px;
+    padding: 1px;
+    background-clip: content-box;
+    border: 1px solid #bbbbbb;
+    background-color: #171C28;
+    border-radius: 3px;
+    margin-bottom: auto;
+    margin-top: auto;
+    margin-left: 5px;
+    margin-right: 10px;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .container input:checked ~ .checkmark {
+    background-color: #9073FF;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    left: 4px;
+    top: 0px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 1px 1px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  @media only screen and (max-width: 599px) {
+    .inputDiv {
+    width: 100% !important;
+    }
+  }
+
+  @media only screen and (min-width: 600px) {
+    .inputDiv {
+    width: 50% !important;
+    }
+  }
+
+  .loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #9073FF; /* Blue */
+    border-radius: 50%;
+    width: 240px;
+    height: 240px;
+    animation: spin 1.5s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .centered {
+    position: fixed;
+    top: 30%;
+    left: 40%;
+    /* bring your own prefixes */
+    /* transform: translate(-50%, -50%); */
+  }
+
+  .shadow {
+    position:fixed;
+    max-width:100%;
+    max-height:100%;
+    top:50%;
+    left:46%;
+    overflow:visible;
+}
+
+.logo {
+  position:relative;
+  max-width:100%;
+  max-height:100%;
+  margin-top:-50%;
+  margin-left:-50%;
+}
+
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: black url(spinner.gif) center center no-repeat;
+  opacity: .5;
+}
+
+#Console {
+  width:100%;
+  height:500px;
+  background-color: #000;
+  border: 1px solid #000;
+  color: #00ff00;
+  padding: 8px;
+  font-family: courier new;
+  resize: none;
+}
+
+#LogModal {
+  /* width: 800px;
+  margin: 30px auto; */
+}
+
+.modal{
+  padding: 0 !important;
+ }
+ .modal-dialog {
+   max-width: 80% !important;
+   height: 100%;
+   padding: 10%;
+   margin: auto;
+ }
+ 
+ .modal-content {
+   border-radius: 0 !important;
+ }
