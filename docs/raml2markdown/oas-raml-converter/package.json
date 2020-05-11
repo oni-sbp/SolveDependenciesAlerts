@@ -65,7 +65,8 @@
     "mocha": "^7.1.2",
     "serializer.ts": "0.0.12",
     "slugify": "^1.0.2",
-    "braces": "^2.3.1"
+    "braces": "^2.3.1",
+    "deep-extend": "^0.5.1"
   },
   "browser": {
     "request": "browser-request"
